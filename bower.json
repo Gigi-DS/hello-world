@@ -1,0 +1,27 @@
+{
+  "name": "hello-world",
+  "version": "0.0.1",
+  "authors": [
+    "Gigi-DS <sgheorghe@gmail.com>"
+  ],
+  "description": "practice_2",
+  "main": "index.html",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "practice_2"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
