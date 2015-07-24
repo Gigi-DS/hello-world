@@ -11,6 +11,30 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
+var mainBowerFiles = require('main-bower-files');
+var less = require('gulp-less');
+var path = require('path');
+
+
+//boostrap 
+
+gulp.task('bower', function() {
+  return gulp.src(mainBowerFiles(), {
+      base: 'bower_components'
+    })
+    .pipe(gulp.dest('public/lib'));
+});
+
+
+gulp.task('less', function () {
+  return gulp.src('./less/**/*.less')
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('./public/css'));
+});
+//*bootstrap
+
 
 //browsersync
 gulp.task('serve', ['minifyCSS', 'scripts'], function() {
@@ -25,6 +49,7 @@ gulp.task('serve', ['minifyCSS', 'scripts'], function() {
     gulp.watch("./scripts/scripts.min.js").on('change', browserSync.reload);
     gulp.watch("./*.html").on('change', browserSync.reload);
 });
+
 
 //Coping and minify jquery
 gulp.task('copy-min-jquery',function(){
