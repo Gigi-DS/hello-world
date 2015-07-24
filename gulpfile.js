@@ -37,7 +37,7 @@ gulp.task('less', function () {
 
 //practice less css
 gulp.task('less-css',function(){
-	return gulp.src('content/less/*.less')
+	return gulp.src('content/*.less')
 	.pipe(sourcemaps.init())
 	.pipe(less())
 	.pipe(sourcemaps.write('./'))
@@ -47,15 +47,22 @@ gulp.task('less-css',function(){
 //browsersync
 gulp.task('serve', ['minifyCSS', 'scripts'], function() {
 
-    browserSync.init({
-        server: "./"
-    });
 
     gulp.watch("./content/*.css", ['minifyCSS']);
     gulp.watch("./content/style.min.css").on('change', browserSync.reload);
     gulp.watch("./scripts/*.js", ['scripts']);
     gulp.watch("./scripts/scripts.min.js").on('change', browserSync.reload);
     gulp.watch("./*.html").on('change', browserSync.reload);
+    
+    browserSync.init({
+        server: "./"
+    });
+});
+
+//coping .less files to content/bootstrap
+gulp.task('copy-less-files',function(){
+	return gulp.src('./bower_components/bootstrap/less/**/*.less')
+	.pipe(gulp.dest('./content/bootstrap'))
 });
 
 
