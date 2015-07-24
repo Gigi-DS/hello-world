@@ -38,7 +38,9 @@ gulp.task('less', function () {
 //practice less css
 gulp.task('less-css',function(){
 	return gulp.src('content/less/*.less')
+	.pipe(sourcemaps.init())
 	.pipe(less())
+	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest('./content'));
 });
 
