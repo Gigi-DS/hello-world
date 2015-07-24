@@ -35,6 +35,12 @@ gulp.task('less', function () {
 });
 //*bootstrap
 
+//practice less css
+gulp.task('less-css',function(){
+	return gulp.src('content/less/*.less')
+	.pipe(less())
+	.pipe(gulp.dest('./content'));
+});
 
 //browsersync
 gulp.task('serve', ['minifyCSS', 'scripts'], function() {
@@ -62,7 +68,7 @@ gulp.task('copy-min-jquery',function(){
 });
 
 // Concatinate and Minize CSS
-gulp.task('minifyCSS',function(){
+gulp.task('minifyCSS',['less-css'],function(){
 	return gulp.src('content/*.css')
 	.pipe(sourcemaps.init())
 	.pipe(concat('style.css'))
@@ -84,4 +90,4 @@ gulp.task('scripts',function(){
 });
 
 //default task
-gulp.task('default',['copy-min-jquery' ,'minifyCSS', 'scripts', 'serve']);
+//gulp.task('default',['copy-min-jquery' ,'minifyCSS', 'scripts', 'serve']);
