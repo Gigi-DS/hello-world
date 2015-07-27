@@ -1,9 +1,17 @@
 body {
 	font: normal 16px verdana;
-	padding: 0 20px;
+	padding: 40px 20px;
 }
 
 #main{
 	width: 80%;
 	margin: 0 auto;
+}
+.main_art{
+	margin: 20px auto;
+}
+
+.web_alias{
+	margin: 20px auto;
+	margin-bottom: 100px;
 }
