@@ -25,6 +25,16 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('public/lib'));
 });
 
+gulp.task('bootstrap:prepareLess', ['bower'], function() {
+  return gulp.src('less/bootstrap/variables.less')
+    .pipe(gulp.dest('public/lib/bootstrap/less'));
+});
+
+gulp.task('bootstrap:compileLess', ['bootstrap:prepareLess'], function() {
+  return gulp.src('public/lib/bootstrap/less/bootstrap.less')
+    .pipe(less())
+    .pipe(gulp.dest('public/lib/bootstrap/dist/css'));
+});
 
 gulp.task('less', function () {
   return gulp.src('./less/**/*.less')
@@ -33,7 +43,13 @@ gulp.task('less', function () {
     }))
     .pipe(gulp.dest('./public/css'));
 });
+gulp.task('watch', function() {
+  gulp.watch(['less/bootstrap/variables.less'], 
+      ['bootstrap:compileLess']);
+});
+
 //*bootstrap
+
 
 //practice less css
 gulp.task('less-css',function(){
